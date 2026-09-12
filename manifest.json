@@ -1,0 +1,12 @@
+{
+  "name": "Jazz Barber",
+  "short_name": "Jazz Barber",
+  "description": "Agenda, servicios y clientes de Jazz Barber.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0B0B0B",
+  "theme_color": "#0B0B0B",
+  "icons": [
+    { "src": "logo.png", "sizes": "640x640", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

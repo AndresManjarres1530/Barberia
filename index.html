@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jazz Barber — Agenda de barbería</title>
+<meta name="description" content="Agenda, servicios y clientes de Jazz Barber, en una sola app.">
+<meta name="theme-color" content="#0B0B0B">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="apple-touch-icon" href="logo.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <img src="logo.png" alt="Jazz Barber" class="brand-mark">
+    <div>
+      <h1>Jazz Barber</h1>
+      <p class="subtitle" id="fecha-hoy"></p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="view-agenda" class="view">
+    <div class="section-head">
+      <h2>Agenda de hoy</h2>
+      <span class="count-pill" id="citas-count">0 citas</span>
+    </div>
+
+    <div id="citas-list" class="card-list"></div>
+
+    <div id="empty-agenda" class="empty-state" hidden>
+      <p class="empty-title">Sin citas todavía</p>
+      <p class="empty-body">Agrega la primera cita del día para empezar a llenar tu agenda.</p>
+    </div>
+
+    <form id="form-cita" class="inline-form" hidden>
+      <label for="cc-cliente">Cliente</label>
+      <input id="cc-cliente" placeholder="Nombre del cliente" autocomplete="off">
+
+      <label for="cc-servicio">Servicio</label>
+      <select id="cc-servicio"></select>
+
+      <label for="cc-barbero">Barbero</label>
+      <select id="cc-barbero"></select>
+
+      <label for="cc-hora">Hora</label>
+      <input id="cc-hora" placeholder="Ej: 3:30 pm" autocomplete="off">
+
+      <p class="field-error" id="cc-error" hidden>Completa cliente y hora antes de guardar.</p>
+
+      <div class="form-actions">
+        <button type="button" class="btn-primary" onclick="guardarCita()">Guardar cita</button>
+        <button type="button" class="btn-ghost" onclick="cerrarForm('cita')">Cancelar</button>
+      </div>
+    </form>
+
+    <button class="btn-add" id="btn-nueva-cita" onclick="abrirForm('cita')">
+      <span class="plus">+</span> Nueva cita
+    </button>
+  </section>
+
+  <section id="view-servicios" class="view" hidden>
+    <div class="section-head">
+      <h2>Servicios y precios</h2>
+    </div>
+
+    <div id="servicios-list" class="card-list"></div>
+
+    <form id="form-servicio" class="inline-form" hidden>
+      <label for="sv-nombre">Nombre del servicio</label>
+      <input id="sv-nombre" placeholder="Ej: Corte clásico" autocomplete="off">
+
+      <label for="sv-precio">Precio</label>
+      <input id="sv-precio" placeholder="Ej: 25000" inputmode="numeric" autocomplete="off">
+
+      <label for="sv-dur">Duración</label>
+      <input id="sv-dur" placeholder="Ej: 30 min" autocomplete="off">
+
+      <p class="field-error" id="sv-error" hidden>Completa nombre y precio antes de guardar.</p>
+
+      <div class="form-actions">
+        <button type="button" class="btn-primary" onclick="guardarServicio()">Guardar servicio</button>
+        <button type="button" class="btn-ghost" onclick="cerrarForm('servicio')">Cancelar</button>
+      </div>
+    </form>
+
+    <button class="btn-add" id="btn-nuevo-servicio" onclick="abrirForm('servicio')">
+      <span class="plus">+</span> Nuevo servicio
+    </button>
+  </section>
+
+  <section id="view-clientes" class="view" hidden>
+    <div class="section-head">
+      <h2>Clientes</h2>
+    </div>
+
+    <div id="clientes-list" class="card-list"></div>
+
+    <form id="form-cliente" class="inline-form" hidden>
+      <label for="cl-nombre">Nombre del cliente</label>
+      <input id="cl-nombre" placeholder="Nombre completo" autocomplete="off">
+
+      <p class="field-error" id="cl-error" hidden>Escribe el nombre del cliente.</p>
+
+      <div class="form-actions">
+        <button type="button" class="btn-primary" onclick="guardarCliente()">Guardar cliente</button>
+        <button type="button" class="btn-ghost" onclick="cerrarForm('cliente')">Cancelar</button>
+      </div>
+    </form>
+
+    <button class="btn-add" id="btn-nuevo-cliente" onclick="abrirForm('cliente')">
+      <span class="plus">+</span> Nuevo cliente
+    </button>
+  </section>
+
+</main>
+
+<nav class="bottombar">
+  <button class="tab active" data-tab="agenda" onclick="showTab('agenda')">
+    <span class="tab-icon">📅</span>
+    <span>Agenda</span>
+  </button>
+  <button class="tab" data-tab="servicios" onclick="showTab('servicios')">
+    <span class="tab-icon">💈</span>
+    <span>Servicios</span>
+  </button>
+  <button class="tab" data-tab="clientes" onclick="showTab('clientes')">
+    <span class="tab-icon">👤</span>
+    <span>Clientes</span>
+  </button>
+</nav>
+
+<script src="app.js"></script>
+</body>
+</html>
